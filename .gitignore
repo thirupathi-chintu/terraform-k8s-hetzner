@@ -4,3 +4,15 @@ terraform.tfstate*
 terraform.tfvars
 .auto.tfvars
 creds/
+
+# Created by .ignore support plugin (hsz.mobi)
+.idea/*
+admin.conf
+jenkins-2.4.1.tgz
+jenkins-secrets/config.xml
+jenkins-secrets/hudson.util.Secret
+jenkins-secrets/master.key
+jenkins-jobs/croc-hunter
+jenkins
+/keys
+/docs/notes

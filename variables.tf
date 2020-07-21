@@ -13,7 +13,7 @@ variable "node_image" {
 }
 
 variable "master_type" {
-  default = "cx21"
+  default = "cx41"
 }
 
 variable "worker_type" {
