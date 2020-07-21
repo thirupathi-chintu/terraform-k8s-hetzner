@@ -41,6 +41,11 @@ resource "hcloud_server" "master" {
 		source      = "${path.module}/hack/master.sh"
 		destination = "/root/master.sh"
 	}
+	
+	provisioner "file" {
+		source      = "${path.module}/config-jenkins/"
+		destination = "/root/config-jenkins/"
+	}
 
 	provisioner "remote-exec" {
 		inline = ["/bin/bash /root/master.sh"]
