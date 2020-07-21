@@ -23,5 +23,5 @@ variable "worker_type" {
 variable "hcloud_token" {
 }
 variable "workers" {
-  default = 1
+  default = 2
 }

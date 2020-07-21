@@ -7,7 +7,7 @@ resource "hcloud_server" "worker" {
   ssh_keys    = ["${hcloud_ssh_key.cluster_admin.id}"]
 
   connection {
-    host = "${hcloud_server.worker.*.ipv4_address}"
+    host = self.ipv4_address
     private_key = "${file(var.ssh_private_key)}"
   }
 
