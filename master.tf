@@ -27,7 +27,7 @@ resource "hcloud_server" "master" {
 	}
 
 	provisioner "remote-exec" {
-		inline = ["/bin/bash", "/root/bootstrap.sh"]
+		inline = ["/bin/bash /root/bootstrap.sh"]
 	}
 
 	provisioner "file" {
@@ -36,7 +36,7 @@ resource "hcloud_server" "master" {
 	}
 
 	provisioner "remote-exec" {
-		inline = ["/bin/bash", "/root/master.sh"]
+		inline = ["/bin/bash /root/master.sh"]
 	}
 
 	provisioner "local-exec" {

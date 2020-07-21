@@ -17,7 +17,7 @@ resource "hcloud_server" "worker" {
   }
 
   provisioner "remote-exec" {
-    inline = ["/bin/bash", "/root/bootstrap.sh"]
+    inline = ["/bin/bash /root/bootstrap.sh"]
   }
 
   provisioner "file" {
@@ -37,6 +37,6 @@ resource "hcloud_server" "worker" {
   }
 
   provisioner "remote-exec" {
-    inline = ["bash", "/root/node.sh"]
+    inline = ["bash /root/node.sh"]
   }
 }
