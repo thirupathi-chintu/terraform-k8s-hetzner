@@ -28,15 +28,6 @@ resource "hcloud_server" "master" {
 		private_key = "${file(var.ssh_private_key)}"
 	}
 
-	provisioner "local-exec" {
-	command = "mkdir -p config-jenkins"
-	}
-
-	provisioner "file" {
-		source      = "${path.module}/config-jenkins"
-		destination = "config-jenkins/"
-	}
-
 	provisioner "file" {
 		source      = "${path.module}/hack/bootstrap.sh"
 		destination = "/root/bootstrap.sh"
