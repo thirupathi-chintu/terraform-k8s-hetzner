@@ -9,6 +9,13 @@ provider "hcloud" {
 	token = "${var.hcloud_token}"
 }
 
+# Configure Floating_ip
+resource "hcloud_floating_ip" "master" {
+  type = "ipv4"
+  server_id = "${hcloud_server.master.id}"
+  name = "kubernetes-master"
+}
+
 # Bootstrap and initialize master
 resource "hcloud_server" "master" {
 	name = "kubernetes-master"
