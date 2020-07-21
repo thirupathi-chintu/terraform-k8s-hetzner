@@ -17,6 +17,7 @@ resource "hcloud_server" "master" {
 	ssh_keys = ["${hcloud_ssh_key.cluster_admin.id}"]
 
 	connection {
+		host = "${hcloud_server.master.ipv4_address}"
 		private_key = "${file(var.ssh_private_key)}"
 	}
 
@@ -26,7 +27,7 @@ resource "hcloud_server" "master" {
 	}
 
 	provisioner "remote-exec" {
-		inline = "/bin/bash /root/bootstrap.sh"
+		inline = ["/bin/bash", "/root/bootstrap.sh"]
 	}
 
 	provisioner "file" {
@@ -35,15 +36,14 @@ resource "hcloud_server" "master" {
 	}
 
 	provisioner "remote-exec" {
-		inline = "/bin/bash /root/master.sh"
+		inline = ["/bin/bash", "/root/master.sh"]
 	}
 
 	provisioner "local-exec" {
 	command = "bash ${path.module}/hack/copy_local.sh"
-
-		environment {
+		environment = {
 			SSH_PRIVATE_KEY 	= "${var.ssh_private_key}"
-			SSH_CONN   				= "root@${hcloud_server.master.ipv4_address}"
+			SSH_CONN   			= "root@${hcloud_server.master.ipv4_address}"
 			COPY_TO_LOCAL    	= "creds/"
 		}
 	}

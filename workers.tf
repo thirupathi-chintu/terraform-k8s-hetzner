@@ -7,6 +7,7 @@ resource "hcloud_server" "worker" {
   ssh_keys    = ["${hcloud_ssh_key.cluster_admin.id}"]
 
   connection {
+    host = "${hcloud_server.worker.*.ipv4_address}"
     private_key = "${file(var.ssh_private_key)}"
   }
 
@@ -16,7 +17,7 @@ resource "hcloud_server" "worker" {
   }
 
   provisioner "remote-exec" {
-    inline = "/bin/bash /root/bootstrap.sh"
+    inline = ["/bin/bash", "/root/bootstrap.sh"]
   }
 
   provisioner "file" {
@@ -36,6 +37,6 @@ resource "hcloud_server" "worker" {
   }
 
   provisioner "remote-exec" {
-    inline = "bash /root/node.sh"
+    inline = ["bash", "/root/node.sh"]
   }
 }

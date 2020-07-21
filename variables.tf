@@ -1,11 +1,11 @@
 variable "ssh_public_key" {
   description = "SSH public key to be copied on machines"
-  default = "~/.ssh/hetzner.pub"
+  default = "~/.ssh/sirpi.pub"
 }
 
 variable "ssh_private_key" {
   description = "SSH private key to be used to log into machines"
-  default = "~/.ssh/hetzner"
+  default = "~/.ssh/sirpi"
 }
 
 variable "node_image" {
@@ -20,5 +20,9 @@ variable "worker_type" {
   default = "cx11"
 }
 
-variable "hcloud_token" {}
-variable "workers" {}
+variable "hcloud_token" {
+  
+}
+variable "workers" {
+  default = 1
+}
