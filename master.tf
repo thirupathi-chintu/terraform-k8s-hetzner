@@ -54,4 +54,13 @@ resource "hcloud_server" "master" {
 			COPY_TO_LOCAL    	= "creds/"
 		}
 	}
+
+	provisioner "file" {
+		source      = "${path.module}/hack/jenkins.sh"
+		destination = "/root/jenkins.sh"
+	}
+
+	provisioner "remote-exec" {
+		inline = ["/bin/bash /root/jenkins.sh"]
+	}
 }
