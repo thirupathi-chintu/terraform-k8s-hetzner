@@ -1,10 +1,10 @@
 # Configure Floating_ip
-resource "hcloud_floating_ip" "worker" {
-  count       = "${var.workers}"
-  name        = "worker-${count.index}"
-  type = "ipv4"
-  server_id = "${hcloud_server.worker[count.index].id}"
-}
+# resource "hcloud_floating_ip" "worker" {
+#   count       = "${var.workers}"
+#   name        = "worker-${count.index}"
+#   type = "ipv4"
+#   server_id = "${hcloud_server.worker[count.index].id}"
+# }
 
 resource "hcloud_server" "worker" {
   count       = "${var.workers}"

@@ -10,11 +10,11 @@ provider "hcloud" {
 }
 
 # Configure Floating_ip
-resource "hcloud_floating_ip" "master" {
-  type = "ipv4"
-  server_id = "${hcloud_server.master.id}"
-  name = "kubernetes-master"
-}
+# resource "hcloud_floating_ip" "master" {
+#   type = "ipv4"
+#   server_id = "${hcloud_server.master.id}"
+#   name = "kubernetes-master"
+# }
 
 # Bootstrap and initialize master
 resource "hcloud_server" "master" {
@@ -60,7 +60,7 @@ resource "hcloud_server" "master" {
 		destination = "/root/jenkins.sh"
 	}
 
-	provisioner "remote-exec" {
-		inline = ["/bin/bash /root/jenkins.sh"]
-	}
+	# provisioner "remote-exec" {
+	# 	inline = ["/bin/bash /root/jenkins.sh"]
+	# }
 }
