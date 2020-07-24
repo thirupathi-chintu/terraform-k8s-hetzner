@@ -21,6 +21,7 @@ variable "worker_type" {
 }
 
 variable "hcloud_token" {
+  default = "MMUfKv7RkU8yZ7nw7B1UQe5179PpCjmWx2Y1I3gZ7Kv111aokTWxF1tTuAzak7wl"
 }
 variable "workers" {
   default = 1
