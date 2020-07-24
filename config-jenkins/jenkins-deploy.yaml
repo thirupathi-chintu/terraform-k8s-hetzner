@@ -21,7 +21,6 @@ spec:
          volumeMounts:
           - name: jenkins-home
             mountPath: /var/jenkins_home
-            subPath: jenkins
           - name: docker-sock-volume
             mountPath: /var/run/docker.sock
          ports:
