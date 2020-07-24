@@ -11,7 +11,8 @@ resource "hcloud_server" "worker" {
   name        = "worker-${count.index}"
   server_type = "${var.worker_type}"
   image       = "${var.node_image}"
-  depends_on  = ["hcloud_server.master"]
+  datacenter = "nbg1-dc3"
+  depends_on  = ["hcloud_server.master", "null_resource.kuberentes"]
   ssh_keys    = ["${hcloud_ssh_key.cluster_admin.id}"]
 
   connection {

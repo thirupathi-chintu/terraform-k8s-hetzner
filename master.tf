@@ -9,22 +9,31 @@ provider "hcloud" {
 	token = "${var.hcloud_token}"
 }
 
-# Configure Floating_ip
-# resource "hcloud_floating_ip" "master" {
-#   type = "ipv4"
-#   server_id = "${hcloud_server.master.id}"
-#   name = "kubernetes-master"
-# }
+# assignment
+resource "hcloud_floating_ip_assignment" "main" {
+  floating_ip_id = "${hcloud_floating_ip.master.id}"
+  server_id = "${hcloud_server.master.id}"
+}
+
+#Configure Floating_ip
+resource "hcloud_floating_ip" "master" {
+  type = "ipv4"
+  server_id = "${hcloud_server.master.id}"
+  name = "kubernetes-master"
+}
 
 # Bootstrap and initialize master
 resource "hcloud_server" "master" {
 	name = "kubernetes-master"
 	image = "${var.node_image}"
+  datacenter = "nbg1-dc3"
 	server_type = "${var.master_type}"
 	ssh_keys = ["${hcloud_ssh_key.cluster_admin.id}"]
+}
 
-	connection {
-		host = "${hcloud_server.master.ipv4_address}"
+resource "null_resource" "kuberentes" {
+    connection {
+		host = "${hcloud_floating_ip.master.id}"
 		private_key = "${file(var.ssh_private_key)}"
 	}
 
@@ -50,7 +59,7 @@ resource "hcloud_server" "master" {
 	command = "bash ${path.module}/hack/copy_local.sh"
 		environment = {
 			SSH_PRIVATE_KEY 	= "${var.ssh_private_key}"
-			SSH_CONN   			= "root@${hcloud_server.master.ipv4_address}"
+			SSH_CONN   			= "root@${hcloud_floating_ip.master.id}"
 			COPY_TO_LOCAL    	= "creds/"
 		}
 	}
