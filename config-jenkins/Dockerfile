@@ -27,7 +27,7 @@ RUN /usr/local/bin/install-plugins.sh kubernetes
 # COPY plugins.txt /usr/share/jenkins/plugins.txt
 # RUN /usr/local/bin/install-plugins.sh < /usr/share/jenkins/plugins.txt
 USER root
-RUN sudo apt update && sudo apt install -y python3 && sudo apt install -y python3-pip && sudo pip3 install ansible && sudo pip3 install openshift
+RUN  apt update &&  apt install -y python3 &&  apt install -y python3-pip &&  pip3 install ansible &&  pip3 install openshift
 
 RUN curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
 RUN apt-get -qq update && apt-get -qq install -y kubelet
