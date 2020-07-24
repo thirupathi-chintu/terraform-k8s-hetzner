@@ -9,11 +9,6 @@ spec:
   ports:
     - port: 80
       targetPort: 8080
-      protocol: TCP
-      name: http
-    - port: 50000
-      targetPort: 50000  
-      protocol: TCP
-      name: slave
+      NodePort: 30000
   selector:
     app: jenkins-master
