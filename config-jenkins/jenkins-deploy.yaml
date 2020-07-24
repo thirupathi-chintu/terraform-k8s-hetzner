@@ -23,6 +23,12 @@ spec:
             mountPath: /var/jenkins_home
           - name: docker-sock-volume
             mountPath: /var/run/docker.sock
+          - name: kubectl-volume
+            mountPath: /usr/bin/kubectl
+          - name: ansible-volume
+            mountPath: /usr/bin/ansible
+          - name: helm-volume
+            mountPath: /usr/local/bin/helm 
          ports:
            - name: http-port
              containerPort: 8080
@@ -35,3 +41,12 @@ spec:
        - name: docker-sock-volume
          hostPath:
            path: /var/run/docker.sock
+       - name: kubectl-volume
+         hostPath:
+           path: /usr/bin/kubectl
+       - name: ansible-volume
+         hostPath:
+           path: /usr/bin/ansible
+       - name: helm-volume
+         hostPath:
+           path: /usr/local/bin/helm

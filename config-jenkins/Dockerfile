@@ -27,8 +27,6 @@ RUN /usr/local/bin/install-plugins.sh kubernetes
 # COPY plugins.txt /usr/share/jenkins/plugins.txt
 # RUN /usr/local/bin/install-plugins.sh < /usr/share/jenkins/plugins.txt
 USER root
-RUN apt update &&  apt install -y python3 &&  apt install -y python3-pip &&  pip3 install ansible &&  pip3 install openshift
-
 RUN apt-get update \
   && apt-get install -qqy apt-transport-https ca-certificates curl gnupg2 software-properties-common 
 RUN curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add -
@@ -40,7 +38,6 @@ RUN apt-get update  -qq \
   && apt-get install docker-ce -y
 RUN usermod -aG docker jenkins
 RUN apt-get clean
-RUN curl -L "https://github.com/docker/compose/releases/download/1.24.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose && chmod +x /usr/local/bin/docker-compose
 RUN apt-get update && apt-get install -y maven
 USER jenkins
 
