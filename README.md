@@ -33,3 +33,14 @@ After Terraform has done the work, `kubeconfig` is located in the `creds/` folde
 -   **Patch** some code
 -   **Push** your changes
 -   Create a **Pull Request**
+
+
+
+
+https://stackoverflow.com/questions/47973570/kubernetes-log-user-systemserviceaccountdefaultdefault-cannot-get-services
+
+https://rancher.com/blog/2018/2018-11-27-scaling-jenkins/
+
+https://www.blazemeter.com/blog/how-to-setup-scalable-jenkins-on-top-of-a-kubernetes-cluster
+
+https://github.com/fabric8io/fabric8/issues/6840
