@@ -27,14 +27,7 @@ RUN /usr/local/bin/install-plugins.sh kubernetes
 # COPY plugins.txt /usr/share/jenkins/plugins.txt
 # RUN /usr/local/bin/install-plugins.sh < /usr/share/jenkins/plugins.txt
 USER root
-RUN  apt update &&  apt install -y python3 &&  apt install -y python3-pip &&  pip3 install ansible &&  pip3 install openshift
-
-RUN wget https://storage.googleapis.com/kubernetes-helm//var/lib/jenkins/ansible/sayarapp-deploy/deploy.yml-v2.8.1-linux-amd64.tar.gz
-RUN tar -xzvf helm-v2.8.1-linux-amd64.tar.gz
-RUN sudo mv linux-amd64/helm /usr/local/bin
-
-RUN curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
-#RUN apt-get -qq update && apt-get -qq install -y kubelet
+RUN apt update &&  apt install -y python3 &&  apt install -y python3-pip &&  pip3 install ansible &&  pip3 install openshift
 
 RUN apt-get update \
   && apt-get install -qqy apt-transport-https ca-certificates curl gnupg2 software-properties-common 
