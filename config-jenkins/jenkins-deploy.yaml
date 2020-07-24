@@ -18,8 +18,6 @@ spec:
          env:
             - name: JAVA_OPTS
               value: -Djenkins.install.runSetupWizard=false
-            - name: JENKINS_OPTS
-              value: --argumentsRealm.roles.user=admin --argumentsRealm.passwd.admin=admin --argumentsRealm.roles.admin=admin
          volumeMounts:
           - name: jenkins-home
             mountPath: /var/jenkins_home
@@ -30,9 +28,14 @@ spec:
              containerPort: 8080
            - name: jnlp-port
              containerPort: 50000
+         volumeMounts:
+           - name: jenkins-home
+             mountPath: /var/lib/jenkins
+             subPath: jenkins
       volumes:
        - name: jenkins-home
-         emptyDir: {}
+         persistentVolumeClaim:
+           claimName: jenkins-pv-claim
        - name: docker-sock-volume
          hostPath:
            path: /var/run/docker.sock
