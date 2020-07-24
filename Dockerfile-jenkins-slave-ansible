@@ -1,5 +1,7 @@
 FROM jenkins/jnlp-slave
 
+
+USER root
 RUN apt-get update \
     && apt-get install --no-install-recommends -y openssh-server \
     && rm -rf /var/lib/apt/lists/*
@@ -18,7 +20,7 @@ RUN echo "deb http://ppa.launchpad.net/ansible/ansible/ubuntu trusty main" >> /e
 	apt-get update && \
 	apt-get install -y --no-install-recommends ansible=2.8\* && \
 	rm -rf /var/lib/apt/lists/*
-    
+
 # For testing purpose only
 # COPY empty-test-file /jenkins-slave1
 RUN apt-get update \
@@ -34,4 +36,5 @@ RUN usermod -aG docker jenkins
 RUN apt-get clean
 RUN curl -L "https://github.com/docker/compose/releases/download/1.24.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose && chmod +x /usr/local/bin/docker-compose
 
+USER jenkins
 ENTRYPOINT ["jenkins-slave"]
