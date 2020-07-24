@@ -26,7 +26,7 @@ spec:
           - name: kubectl-volume
             mountPath: /usr/bin/kubectl
           - name: ansible-volume
-            mountPath: /usr/bin/ansible
+            mountPath: /usr/local/bin/ansible
           - name: helm-volume
             mountPath: /usr/local/bin/helm 
          ports:
