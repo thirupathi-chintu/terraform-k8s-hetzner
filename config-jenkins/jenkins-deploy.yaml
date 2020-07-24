@@ -21,6 +21,7 @@ spec:
          volumeMounts:
           - name: jenkins-home
             mountPath: /var/jenkins_home
+            subPath: jenkins
           - name: docker-sock-volume
             mountPath: /var/run/docker.sock
          ports:
@@ -28,10 +29,6 @@ spec:
              containerPort: 8080
            - name: jnlp-port
              containerPort: 50000
-         volumeMounts:
-           - name: jenkins-home
-             mountPath: /var/lib/jenkins
-             subPath: jenkins
       volumes:
        - name: jenkins-home
          persistentVolumeClaim:
