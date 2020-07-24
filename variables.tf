@@ -13,15 +13,15 @@ variable "node_image" {
 }
 
 variable "master_type" {
-  default = "cx41"
+  default = "cpx31"
 }
 
 variable "worker_type" {
-  default = "cx11"
+  default = "cpx51"
 }
 
 variable "hcloud_token" {
 }
 variable "workers" {
-  default = 2
+  default = 1
 }
