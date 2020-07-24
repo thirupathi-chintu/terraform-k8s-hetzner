@@ -27,8 +27,6 @@ spec:
             mountPath: /usr/bin/kubectl
           - name: ansible-volume
             mountPath: /usr/bin/ansible
-          - name: ansible-pack-volume
-            mountPath: /usr/bin/python
           - name: helm-volume
             mountPath: /usr/local/bin/helm 
          ports:
@@ -49,9 +47,6 @@ spec:
        - name: ansible-volume
          hostPath:
            path: /usr/bin/ansible
-       - name: ansible-pack-volume
-         hostPath:
-           path: /usr/bin/python
        - name: helm-volume
          hostPath:
            path: /usr/local/bin/helm
