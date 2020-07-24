@@ -3,7 +3,7 @@ kind: Ingress
 metadata:
   name: jenkins-ingress
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /$1
+    nginx.ingress.kubernetes.io/rewrite-target: /
     nginx.ingress.kubernetes.io/cors-allow-credentials: "true"
     nginx.ingress.kubernetes.io/cors-allow-headers: Authorization, origin, accept
     nginx.ingress.kubernetes.io/cors-allow-methods: GET, OPTIONS
@@ -13,7 +13,6 @@ spec:
   - host: apps.sirpi.io
     http:
       paths:
-      - path: /
-        backend:
+      - backend:
             serviceName: jenkins-master-svc
             servicePort: 80
