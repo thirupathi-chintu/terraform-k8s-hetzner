@@ -13,31 +13,3 @@ spec:
   selector:
     app: jenkins-master
 
-
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: jenkins-pv
-  labels:
-    type: local
-spec:
-  storageClassName: manual
-  capacity:
-    storage: 3Gi
-  accessModes:
-    - ReadWriteOnce
-  hostPath:
-    path: "/home/jenkins"
-
-
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: jenkins-pv-claim
-spec:
-  storageClassName: manual
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 15Gi
