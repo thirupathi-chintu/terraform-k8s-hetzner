@@ -27,6 +27,8 @@ RUN /usr/local/bin/install-plugins.sh kubernetes
 # COPY plugins.txt /usr/share/jenkins/plugins.txt
 # RUN /usr/local/bin/install-plugins.sh < /usr/share/jenkins/plugins.txt
 USER root
+RUN apt update && apt install -y python3 && apt install -y python3-pip && pip3 install ansible
+
 RUN apt-get update \
   && apt-get install -qqy apt-transport-https ca-certificates curl gnupg2 software-properties-common 
 RUN curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add -
